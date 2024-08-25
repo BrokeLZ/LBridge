@@ -1,0 +1,8 @@
+{
+    "hpath": [
+        {
+            "value": "path/to/LBridge",
+            "method": "append"
+        }
+    ]
+}

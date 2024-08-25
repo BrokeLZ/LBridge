@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mainMenu>
+  <menuBar>
+    <subMenu id="custom_quixel_live_link">
+      <label>LBridge</label>
+
+      <scriptItem>
+        <label>Run Custom Live Link</label>
+        <scriptCode><![CDATA[
+from LBridge import main
+try:
+    # Python 3.7+
+    from importlib import reload
+except:
+    # Python 2.7
+    pass
+reload(main)
+main.main()]]></scriptCode>
+      </scriptItem>
+    </subMenu>
+  </menuBar>
+</mainMenu>

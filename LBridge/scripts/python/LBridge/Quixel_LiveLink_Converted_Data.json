@@ -1,0 +1,115 @@
+"path": "G:\\\\MegascansLibrary_v02\\\\Downloaded\\\\3d\\\\3d_tree_saEaP",
+  "id": "saEaP",
+  "name": "Pine Tree Trunk",
+  "type": "3d",
+  "lod": "lod5",
+  "namingConvention": {
+    "texture": "$mapName_$resolution_$lod_$id",
+    "model": "$name_$lod_$variation_$id",
+    "folder": "$name_$id"
+  },
+  "hasVars": false,
+  "res": "4K",
+  "resVal": 4096,
+  "mapName": {
+    "albedo": "Albedo",
+    "ao": "AO",
+    "bump": "Bump",
+    "cavity": "Cavity",
+    "curvature": "Curvature",
+    "diffuse": "Diffuse",
+    "displacement": "Displacement",
+    "fuzz": "Fuzz",
+    "gloss": "Gloss",
+    "mask": "Mask",
+    "metalness": "Metalness",
+    "normal": "Normal",
+    "opacity": "Opacity",
+    "normalobject": "NormalObject",
+    "roughness": "Roughness",
+    "specular": "Specular",
+    "thickness": "Thickness",
+    "translucency": "Translucency",
+    "transmission": "Transmission"
+  },
+  "texDir": [
+    {
+      "path": "G:\\\\MegascansLibrary_v02\\\\Downloaded\\\\3d\\\\3d_tree_saEaP\\\\Aset_saEaP_4K_Albedo.exr",
+      "type": "albedo",
+      "resolution": "4K",
+      "format": "exr",
+      "name": "Aset_saEaP_4K_Albedo.exr",
+      "nameOverride": "Albedo_4K__saEaP.exr",
+      "colorSpace": "sRGB",
+      "physicalSize": "1x1"
+    },
+    {
+      "resolution": "4K",
+      "type": "bump",
+      "path": "G:\\\\MegascansLibrary_v02\\\\Downloaded\\\\3d\\\\3d_tree_saEaP\\\\Aset_saEaP_4K_Bump.exr",
+      "format": "exr",
+      "name": "Aset_saEaP_4K_Bump.exr",
+      "nameOverride": "Bump_4K__saEaP.exr",
+      "colorSpace": "Linear",
+      "physicalSize": "1x1"
+    },
+    {
+      "resolution": "4K",
+      "type": "displacement",
+      "path": "G:\\\\MegascansLibrary_v02\\\\Downloaded\\\\3d\\\\3d_tree_saEaP\\\\Aset_saEaP_4K_Displacement.exr",
+      "format": "exr",
+      "name": "Aset_saEaP_4K_Displacement.exr",
+      "nameOverride": "Displacement_4K__saEaP.exr",
+      "colorSpace": "Linear",
+      "physicalSize": "1x1"
+    },
+    {
+      "resolution": "4K",
+      "type": "fuzz",
+      "path": "G:\\\\MegascansLibrary_v02\\\\Downloaded\\\\3d\\\\3d_tree_saEaP\\\\Aset_saEaP_4K_Fuzz.exr",
+      "format": "exr",
+      "name": "Aset_saEaP_4K_Fuzz.exr",
+      "nameOverride": "Fuzz_4K__saEaP.exr",
+      "colorSpace": "sRGB",
+      "physicalSize": "1x1"
+    },
+    {
+      "path": "G:\\\\MegascansLibrary_v02\\\\Downloaded\\\\3d\\\\3d_tree_saEaP\\\\Aset_saEaP_4K_Normal_LOD0.exr",
+      "type": "normal",
+      "resolution": "4K",
+      "format": "exr",
+      "name": "Aset_saEaP_4K_Normal_LOD0.exr",
+      "nameOverride": "Normal_4K_LOD0_saEaP.exr",
+      "colorSpace": "Linear",
+      "physicalSize": "1x1"
+    },
+    {
+      "resolution": "4K",
+      "type": "roughness",
+      "path": "G:\\\\MegascansLibrary_v02\\\\Downloaded\\\\3d\\\\3d_tree_saEaP\\\\Aset_saEaP_4K_Roughness.exr",
+      "format": "exr",
+      "name": "Aset_saEaP_4K_Roughness.exr",
+      "nameOverride": "Roughness_4K__saEaP.exr",
+      "colorSpace": "Linear",
+      "physicalSize": "1x1"
+    },
+    {
+      "resolution": "4K",
+      "type": "specular",
+      "path": "G:\\\\MegascansLibrary_v02\\\\Downloaded\\\\3d\\\\3d_tree_saEaP\\\\Aset_saEaP_4K_Specular.exr",
+      "format": "exr",
+      "name": "Aset_saEaP_4K_Specular.exr",
+      "nameOverride": "Specular_4K__saEaP.exr",
+      "colorSpace": "sRGB",
+      "physicalSize": "1x1"
+    }
+  ],
+  "category": "Foliage",
+  "tags": [
+    "pine",
+    "mossy",
+    "rough",
+    "forest",
+    "archviz"
+  ]
+}
