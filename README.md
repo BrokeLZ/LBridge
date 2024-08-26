@@ -16,4 +16,4 @@ To Install LBridge you need to do three things:
 That's it. Now if you restart Houdini, it should load the plugin.
 
 # Quixel Bridge Setup
-Before you can export to Houdini, in Bridge you have to to Exort Settings and set Export Target to "Custom Socket Export" with Socket Port "24981"
+Before you can export to Houdini, in Bridge you have to go to Export Settings and set Export Target to "Custom Socket Export" with Socket Port "24981"
