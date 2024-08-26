@@ -1,1 +1,6 @@
-test
+LBridge/scripts/python/LBridge/.idea
+LBridge/scripts/python/LBridge/.venv
+LBridge/scripts/python/LBridge/__pycache__
+LBridge/scripts/python/LBridge/Quixel*
+
+LBridge/otls/backup
