@@ -7,19 +7,23 @@ from .asset_import import import_asset
 from .logging_setup import set_log
 
 
-
 host, port = 'localhost', 24981
 stop_flag = threading.Event()
 
 
 def process_asset_data(data):
     try:
-        # print(f"raw data: {data}")
         data_dict = json.loads(data)
+        myfile = r"G:\OneDrive\Dokumente\__hou__\devalopment\Quixel_CustomLiveLink\LBridge\LBridge\scripts\python\LBridge\Quixel_LiveLink_Sample_3dasset_Data.json"
+        with open(myfile, "w") as file:
+            json.dump(data_dict, file, indent=4)
     except json.JSONDecodeError as e:
         set_log("Error parsing JSON to dictionary", exc_info=sys.exc_info())
         data_dict = None
         return
+    except Exception as e:
+        set_log("Unexpected error while trying to process asset data", exc_info=sys.exc_info())
+        raise e
 
     asset_data = strip_received_data(data_dict)
     import_asset(asset_data)
@@ -41,11 +45,18 @@ def houdini_listener():
                     s.settimeout(1.0)
                     conn, addr = s.accept()
                     with conn:
+                        buffer = ""
                         while True:
-                            data = conn.recv(4096 * 2)
+                            data = conn.recv(4096 * 2).decode("utf-8")
                             if not data:
                                 break
-                            process_asset_data(data.decode())
+                            buffer += data
+                            try:
+                                data_dict = json.loads(buffer)
+                                process_asset_data(buffer)
+                                buffer = ""
+                            except json.JSONDecodeError:
+                                continue
                 except socket.timeout:
                     continue
         except Exception as e:

@@ -1,9 +1,11 @@
+import re
+
 import hou
 import ast
 import os
 import sys
-from .utils import fix_path, fix_escape_chars, convert_textures_in_parallel, set_tex_space, get_new_tex_ext
-from .global_vars import get_tex_list
+from .utils import fix_path, fix_escape_chars, convert_textures_in_parallel, set_tex_space, get_new_tex_ext, get_lod
+from .global_vars import get_tex_list, get_tex_list_plant
 from .logging_setup import set_log
 
 
@@ -11,14 +13,19 @@ def set_lod(hda):
     menu = []
 
     model_dirs = hda.evalParm("dirs_model")
-
     model_dirs_list = ast.literal_eval(model_dirs)
 
     for model_dir in model_dirs_list:
-        lod = model_dir["lod"]
+        lod = None
+        try:
+            if model_dir["variation"] == 1:
+                lod = model_dir["lod"]
+        except KeyError:
+            lod = model_dir["lod"]
 
-        menu.append(lod)
-        menu.append(lod.upper())
+        if lod:
+            menu.append(lod)
+            menu.append(lod.upper())
 
     hda.parm("lod_list").set(str(menu))
     hda.parm("lod").pressButton()
@@ -38,45 +45,68 @@ def set_model_path(node):
     model_dirs = hda.evalParm("dirs_model")
     model_dirs_list = ast.literal_eval(model_dirs)
 
-    _lod_list = hda.evalParm("lod_list")
-    lod_list = ast.literal_eval(_lod_list)
+    lod = get_lod(hda)
 
-    lod_tokens = lod_list[::2]
-    lod_index = hda.evalParm("lod")
-
-    if hda.evalParm("mult_lod"):
-        if not hda.evalParm("has_vars"):
-            iteration_count = hda.node("imp_geo_01").evalParm("inter_count")
-            lod_index = hda.evalParm(f"remap_lod_{iteration_count}")
-            lod = lod_tokens[lod_index]
-        else:
-            iteration_count = hda.node("imp_geo_01").evalParm("inter_count")
-            lod_index = hda.evalParm(f"remap_lod_{iteration_count}")
-            lod = lod_tokens[lod_index]
-
-    else:
-        lod = lod_tokens[lod_index]
+    hda_type = hda.type().nameComponents()[2]
 
     geo_path = None
-    for model_dict in model_dirs_list:
-        if model_dict["lod"] == lod:
-            geo_path = model_dict["path"]
-            geo_path = fix_escape_chars(geo_path)
-            geo_path = fix_path(geo_path)
+    if hda_type == "megascan_simple_3d_asset_import":
+        for model_dict in model_dirs_list:
+            if model_dict["lod"] == lod:
+                geo_path = model_dict["path"]
+                geo_path = fix_escape_chars(geo_path)
+                geo_path = fix_path(geo_path)
+
+    elif hda_type == "megascan_simple_3d_plant_import":
+        current_variant = hda.node("imp_geo_01").evalParm("inter_count_var")
+        for model_dict in model_dirs_list:
+            if model_dict["lod"] == lod and model_dict["variation"] == current_variant+1:
+                geo_path = model_dict["path"]
+                geo_path = fix_escape_chars(geo_path)
+                geo_path = fix_path(geo_path)
 
     return geo_path
 
 
 def set_tex_path(node):
     hda = node.parent().parent().parent()
-
     tex = node.name()
-    tex_dirs = hda.evalParm("dirs_tex")
+    hda_type = hda.type().nameComponents()[2]
+    lod = get_lod(hda)
+
+    # Set Billboard Texture if Billboard LOD
+    if hda_type == "megascan_simple_3d_plant_import":
+        max_lod = hda.evalParm("minLOD")
+
+        if lod == max_lod:
+            tex_dirs = hda.evalParm("dirs_tex_billboard")
+        else:
+            tex_dirs = hda.evalParm("dirs_tex")
+
+    else:
+        tex_dirs = hda.evalParm("dirs_tex")
+
     tex_dirs_list = ast.literal_eval(tex_dirs)
     tex_path = ""
     for tex_dic in tex_dirs_list:
         if tex_dic["type"] == tex:
             tex_path = tex_dic["path"]
+            tex_path = fix_escape_chars(tex_path)
+
+            tex_dir = os.path.split(tex_path)[0]
+            tex_filename = os.path.splitext(tex_path)[1]
+
+            if tex == "albedo" or tex == "normal":
+                _tex_lod_list = hda.evalParm(f"{tex}_tex")
+                if _tex_lod_list:
+                    tex_lod_list = ast.literal_eval(_tex_lod_list)
+
+                    lod_pattern = re.compile(r"LOD\d+")
+                    for tex_lod in tex_lod_list:
+                        match = lod_pattern.search(tex_lod)
+                        if match and match.group().lower() == lod:
+                            tex_path = os.path.join(tex_dir, tex_lod)
+
             tex_path = fix_escape_chars(tex_path)
             tex_path = fix_path(tex_path)
 
@@ -91,7 +121,19 @@ def set_tex_path(node):
 def set_tex_path_prev(node):
     hda = node.parent().parent().parent()
 
-    tex_dirs = hda.evalParm("dirs_tex")
+    hda_type = hda.type().nameComponents()[2]
+
+    if hda_type == "megascan_simple_3d_plant_import":
+        max_lod = hda.evalParm("minLOD")
+        lod = get_lod(hda)
+
+        if lod == max_lod:
+            tex_dirs = hda.evalParm("dirs_tex_billboard")
+        else:
+            tex_dirs = hda.evalParm("dirs_tex")
+    else:
+        tex_dirs = hda.evalParm("dirs_tex")
+
     tex_dirs_list = ast.literal_eval(tex_dirs)
     tex_path = ""
     for tex_dic in tex_dirs_list:
@@ -108,7 +150,12 @@ def set_tex_path_prev(node):
 def convert_hda_tex(kwargs):
     try:
         hda = kwargs["node"]
-        tex_list = get_tex_list()
+
+        hda_type = hda.type().nameComponents()[2]
+        if hda_type == "megascan_simple_3d_asset_import":
+            tex_list = get_tex_list()
+        elif hda_type == "megascan_simple_3d_plant_import":
+            tex_list = get_tex_list_plant()
 
         tex_dirs = hda.evalParm("dirs_tex")
         if not tex_dirs:
@@ -120,9 +167,48 @@ def convert_hda_tex(kwargs):
         set_log(f"Failed to preparing texture data for conversion", exc_info=sys.exc_info())
         raise e
 
+    _albedo_lod_list = hda.evalParm("albedo_tex")
+    _normal_lod_list = hda.evalParm("normal_tex")
+    if _albedo_lod_list and _normal_lod_list:
+        albedo_lod_list = ast.literal_eval(_albedo_lod_list)
+        normal_lod_list = ast.literal_eval(_normal_lod_list)
+
+    _tex_path = tex_dirs_list[0]
+    _tex_path = _tex_path["path"]
+    tex_path = fix_path(fix_escape_chars(_tex_path))
+    tex_root = os.path.split(tex_path)[0]
+    for tex_dic in tex_dirs_list:
+        if tex_dic["type"] == "albedo":
+            albedo_space = tex_dic["colorSpace"]
+            albedo_ext = tex_dic["format"]
+        if tex_dic["type"] == "normal":
+            normal_space = tex_dic["colorSpace"]
+            normal_ext = tex_dic["format"]
+    count = 0
+    for tex in albedo_lod_list:
+        if not tex.endswith(".rat"):
+            tex_dirs_list.append({
+                "type": f"albedo{count}",
+                "path": os.path.join(tex_root, tex),
+                "colorSpace": albedo_space,
+                "format": albedo_ext
+            })
+            count += 1
+    count = 0
+    for tex in normal_lod_list:
+        if not tex.endswith(".rat"):
+            tex_dirs_list.append({
+                "type": f"normal{count}",
+                "path": os.path.join(tex_root, tex),
+                "colorSpace": normal_space,
+                "format": normal_ext
+            })
+            count += 1
+
     tex_conversion_data: dict = {}
     for tex_dic in tex_dirs_list:
-        if tex_dic["type"].capitalize() in tex_list:
+
+        if any(tex_dic["type"].capitalize().startswith(tex.capitalize()) for tex in tex_list):
             try:
                 tex_path = tex_dic["path"]
                 tex_path = fix_escape_chars(tex_path)
@@ -182,6 +268,11 @@ def set_tex_connect(kwargs, output_index=0):
             "normal": ["normalmap", "normal"],
             "displacement": ["mtlxsubtract1", "displacement"]
         }
+
+        hda_type = root.parent().parent().type().nameComponents()[2]
+        if hda_type == "megascan_simple_3d_plant_import":
+            tex_list["opacity"] = ["opacity", "opacity"]
+            tex_list["translucency"] = ["cc_translucency", "transmission_color"]
 
         _tex = kwargs["parm_name"]
         tex = _tex.replace("use_", "")

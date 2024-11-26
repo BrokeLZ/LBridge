@@ -1,4 +1,6 @@
+import re
 import sys
+import os
 from .logging_setup import set_log
 
 tex_list: list = [
@@ -7,6 +9,16 @@ tex_list: list = [
             "Roughness",
             "Normal",
             "Displacement"
+        ]
+
+tex_list_plant: list = [
+            "Albedo",
+            "Specular",
+            "Roughness",
+            "Normal",
+            "Displacement",
+            "Opacity",
+            "Translucency"
         ]
 
 asset_settings: dict = {
@@ -36,6 +48,9 @@ asset_settings_default = asset_settings
 
 def get_tex_list():
     return tex_list
+
+def get_tex_list_plant():
+    return tex_list_plant
 
 
 def set_asset_settings(settings_key, settings_value):
@@ -78,6 +93,7 @@ def strip_received_data(received_data):
         ad["id"] = rd["id"]
         ad["name"] = rd["name"]
         ad["type"] = rd["type"]
+        ad["minLOD"] = rd["minLOD"]
 
         # Has Variants
         if "scatter" in rd["tags"] or "scatter" in rd["categories"] or "cmb_asset" in rd["tags"] or "cmb_asset" in rd["categories"]:
@@ -87,10 +103,27 @@ def strip_received_data(received_data):
 
         # ----- Texture Data -----
         ad["texDirs"] = rd["components"]
-        ad["mapName"] = rd["mapNameOverride"]
-        ad["res"] = rd["resolution"]
-        ad["resVal"] = rd["resolutionValue"]
-        ad["averageColor"] = rd["averageColor"]
+        if rd["type"] == "3dplant":
+            ad["texDirs_Billboard"] = rd["components-billboard"]
+
+
+        albedo_tex: list = []
+        normal_tex: list = []
+        asset_dir = rd["path"]
+        if rd["type"] == "3dplant":
+            os.path.join(asset_dir, "Textures", "Atlas")
+
+        lod_albedo_pattern = re.compile(r".*Albedo(_LOD\d+)?.*")
+        lod_normal_pattern = re.compile(r".*Normal(_LOD\d+)?.*")
+        for file in os.listdir(asset_dir):
+            if lod_albedo_pattern.match(file):
+                albedo_tex.append(file)
+            elif lod_normal_pattern.match(file):
+                normal_tex.append(file)
+
+        ad["albedo_tex"] = str(albedo_tex)
+        ad["normal_tex"] = str(normal_tex)
+
 
         # ----- Meta Data -----
         ad["category"] = rd["category"]

@@ -1,4 +1,5 @@
 import os
+import ast
 import platform
 import sys
 import subprocess
@@ -57,9 +58,6 @@ def convert_tex(old_file, new_file, in_colorspace, out_colorspace):
 
         subprocess.run(arguments, check=True)
 
-        # print(f"{os.path.basename(old_file)} was converted to {os.path.basename(new_file)} "
-        #         f"with {in_colorspace}:{out_colorspace}")
-
     except Exception as e:
         set_log("Error converting texture formats", exc_info=sys.exc_info())
         raise e
@@ -68,16 +66,21 @@ def convert_tex(old_file, new_file, in_colorspace, out_colorspace):
 def convert_textures_in_parallel(textures_data, max_workers=5):
     try:
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            future_to_texture = {
-                executor.submit(
+            future_to_texture = {}
+
+            # Loop through textures_data and submit tasks
+            for name, data in textures_data.items():
+                set_log(f"Converting old file: {data[0]}")  # Debugging: print old file name
+
+                future = executor.submit(
                     convert_tex,
                     data[0],  # old_file
                     data[1],  # new_file
                     data[2],  # in_colorspace
-                    data[3]  # out_colorspace
-                ): name
-                for name, data in textures_data.items()
-            }
+                    data[3]   # out_colorspace
+                )
+
+                future_to_texture[future] = name
 
             for future in as_completed(future_to_texture):
                 texture_name = future_to_texture[future]
@@ -142,3 +145,30 @@ def get_new_tex_ext(hda):
         set_log("Error getting texture extension", exc_info=sys.exc_info())
         raise e
 
+
+def get_lod(hda):
+    _lod_list = hda.evalParm("lod_list")
+    lod_list = ast.literal_eval(_lod_list)
+    lod_tokens = lod_list[::2]
+    lod_index = hda.evalParm("lod")
+
+    if hda.evalParm("mult_lod"):
+        has_vars_parm = hda.parm("has_vars")
+        if has_vars_parm:
+            has_var = has_vars_parm.eval()
+        else:
+            has_var = 1
+
+        if not has_var:
+            iteration_count = hda.node("imp_geo_01").evalParm("inter_count")
+            lod_index = hda.evalParm(f"remap_lod_{iteration_count}")
+            lod = lod_tokens[lod_index]
+        else:
+            iteration_count = hda.node("imp_geo_01").evalParm("inter_count")
+            lod_index = hda.evalParm(f"remap_lod_{iteration_count}")
+            lod = lod_tokens[lod_index]
+
+    else:
+        lod = lod_tokens[lod_index]
+
+    return lod
