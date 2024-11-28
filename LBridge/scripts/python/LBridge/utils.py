@@ -138,7 +138,7 @@ def get_new_tex_ext(hda):
             if convert_ext == 0:
                 new_tex_ext = ".rat"
             elif convert_ext == 1:
-                new_tex_ext = ".exr"
+                new_tex_ext = ".exr.exr"
 
             return new_tex_ext
     except Exception as e:

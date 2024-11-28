@@ -6,3 +6,95 @@
 
 
 
+[2024-11-27 11:43:06] [DEBUG - LBridge_logger] - Houdini Listener started on localhost:24981
+[2024-11-27 12:38:31] [DEBUG - LBridge_logger] - Houdini Listener stopped`
+
+
+
+
+
+
+[2024-11-27 12:38:35] [DEBUG - LBridge_logger] - Houdini Listener started on localhost:24981
+[2024-11-27 12:38:58] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/nature_rock_vcljbb1iw/vcljbb1iw_4K_Albedo.exr
+[2024-11-27 12:38:58] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/nature_rock_vcljbb1iw/vcljbb1iw_4K_Displacement.exr
+[2024-11-27 12:38:58] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/nature_rock_vcljbb1iw/vcljbb1iw_4K_Normal_LOD0.exr
+[2024-11-27 12:38:58] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/nature_rock_vcljbb1iw/vcljbb1iw_4K_Roughness.exr
+[2024-11-27 12:38:58] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/nature_rock_vcljbb1iw/vcljbb1iw_4K_Specular.exr
+[2024-11-27 12:38:58] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/nature_rock_vcljbb1iw/vcljbb1iw_4K_Albedo.exr
+[2024-11-27 12:38:58] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/nature_rock_vcljbb1iw/vcljbb1iw_4K_Albedo_LOD4.exr
+[2024-11-27 12:38:58] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/nature_rock_vcljbb1iw/vcljbb1iw_4K_Albedo_LOD5.exr
+[2024-11-27 12:38:58] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/nature_rock_vcljbb1iw/vcljbb1iw_4K_Albedo_LOD6.exr
+[2024-11-27 12:38:58] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/nature_rock_vcljbb1iw/vcljbb1iw_4K_Albedo_LOD7.exr
+[2024-11-27 12:38:58] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/nature_rock_vcljbb1iw/vcljbb1iw_4K_Albedo_LOD8.exr
+[2024-11-27 12:38:58] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/nature_rock_vcljbb1iw/vcljbb1iw_4K_Albedo_Preview.exr
+[2024-11-27 12:38:58] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/nature_rock_vcljbb1iw/vcljbb1iw_4K_Normal_LOD0.exr
+[2024-11-27 12:38:58] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/nature_rock_vcljbb1iw/vcljbb1iw_4K_Normal_LOD1.exr
+[2024-11-27 12:38:58] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/nature_rock_vcljbb1iw/vcljbb1iw_4K_Normal_LOD2.exr
+[2024-11-27 12:38:58] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/nature_rock_vcljbb1iw/vcljbb1iw_4K_Normal_LOD3.exr
+[2024-11-27 12:38:58] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/nature_rock_vcljbb1iw/vcljbb1iw_4K_Normal_LOD4.exr
+[2024-11-27 12:38:58] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/nature_rock_vcljbb1iw/vcljbb1iw_4K_Normal_LOD5.exr
+[2024-11-27 12:38:58] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/nature_rock_vcljbb1iw/vcljbb1iw_4K_Normal_LOD6.exr
+[2024-11-27 12:38:58] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/nature_rock_vcljbb1iw/vcljbb1iw_4K_Normal_LOD7.exr
+[2024-11-27 12:38:58] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/nature_rock_vcljbb1iw/vcljbb1iw_4K_Normal_LOD8.exr
+[2024-11-27 12:39:11] [DEBUG - LBridge_logger] - Successfully imported asset: Small Stones Pack:vcljbb1iw
+[2024-11-27 12:39:14] [DEBUG - LBridge_logger] - Houdini Listener stopped`
+
+
+
+
+
+
+[2024-11-27 16:17:44] [DEBUG - LBridge_logger] - Houdini Listener started on localhost:24981
+[2024-11-27 16:18:09] [DEBUG - LBridge_logger] - Successfully imported asset: Cactus:uddlcjaqx
+[2024-11-27 16:18:13] [DEBUG - LBridge_logger] - Houdini Listener stopped`
+
+
+
+
+
+
+[2024-11-27 16:18:29] [DEBUG - LBridge_logger] - Houdini Listener started on localhost:24981
+[2024-11-27 16:21:14] [DEBUG - LBridge_logger] - Houdini Listener stopped`
+
+
+
+
+
+
+[2024-11-27 16:48:50] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_4K_Albedo.exr
+[2024-11-27 16:48:50] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_4K_Displacement.exr
+[2024-11-27 16:48:50] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_4K_Normal_LOD0.exr
+[2024-11-27 16:48:50] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_4K_Roughness.exr
+[2024-11-27 16:48:50] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_4K_Specular.exr
+[2024-11-27 16:48:50] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_2K_Albedo.exr
+[2024-11-27 16:48:50] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_4K_Albedo.exr
+[2024-11-27 16:48:50] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_2K_Normal_LOD0.exr
+[2024-11-27 16:48:50] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_4K_Normal_LOD0.exr
+[2024-11-27 17:10:41] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_4K_Albedo.exr
+[2024-11-27 17:10:41] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_4K_Displacement.exr
+[2024-11-27 17:10:41] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_4K_Normal_LOD0.exr
+[2024-11-27 17:10:41] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_4K_Roughness.exr
+[2024-11-27 17:10:41] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_4K_Specular.exr
+[2024-11-27 17:10:41] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_2K_Albedo.exr
+[2024-11-27 17:10:41] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_4K_Albedo.exr
+[2024-11-27 17:10:41] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_2K_Normal_LOD0.exr
+[2024-11-27 17:10:41] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_4K_Normal_LOD0.exr
+[2024-11-27 17:14:05] [DEBUG - LBridge_logger] - Houdini Listener started on localhost:24981
+[2024-11-27 17:14:09] [DEBUG - LBridge_logger] - Successfully imported asset: Cactus:uddlcjaqx
+[2024-11-27 17:14:12] [DEBUG - LBridge_logger] - Houdini Listener stopped`
+
+
+
+
+
+
+[2024-11-27 17:14:18] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_4K_Albedo.exr
+[2024-11-27 17:14:18] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_4K_Displacement.exr
+[2024-11-27 17:14:18] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_4K_Normal_LOD0.exr
+[2024-11-27 17:14:18] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_4K_Roughness.exr
+[2024-11-27 17:14:18] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_4K_Specular.exr
+[2024-11-27 17:14:18] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_2K_Albedo.exr
+[2024-11-27 17:14:18] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_4K_Albedo.exr
+[2024-11-27 17:14:18] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_4K_Albedo_Preview.exr
+[2024-11-27 17:14:18] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_2K_Normal_LOD0.exr
+[2024-11-27 17:14:18] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_4K_Normal_LOD0.exr
