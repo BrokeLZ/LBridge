@@ -172,6 +172,9 @@ def convert_hda_tex(kwargs):
     if _albedo_lod_list and _normal_lod_list:
         albedo_lod_list = ast.literal_eval(_albedo_lod_list)
         normal_lod_list = ast.literal_eval(_normal_lod_list)
+    else:
+        albedo_lod_list = []
+        normal_lod_list = []
 
     _tex_path = tex_dirs_list[0]
     _tex_path = _tex_path["path"]

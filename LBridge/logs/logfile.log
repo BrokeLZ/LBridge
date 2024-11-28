@@ -98,3 +98,30 @@
 [2024-11-27 17:14:18] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_4K_Albedo_Preview.exr
 [2024-11-27 17:14:18] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_2K_Normal_LOD0.exr
 [2024-11-27 17:14:18] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3d/3d_other_uddlcjaqx/uddlcjaqx_4K_Normal_LOD0.exr
+[2024-11-28 16:17:06] [DEBUG - LBridge_logger] - Houdini Listener started on localhost:24981
+[2024-11-28 16:17:20] [DEBUG - LBridge_logger] - Asset: Raspberry:wf0oefeja was successfully imported
+[2024-11-28 16:17:29] [DEBUG - LBridge_logger] - Asset: Raspberry:wf0oefeja was successfully imported
+[2024-11-28 16:22:58] [DEBUG - LBridge_logger] - Houdini Listener started on localhost:24981
+[2024-11-28 16:23:04] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3dplant/3dplant_shrub_wf0oefeja/Textures/Atlas/wf0oefeja_4K_Albedo.exr
+[2024-11-28 16:23:04] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3dplant/3dplant_shrub_wf0oefeja/Textures/Atlas/wf0oefeja_4K_Displacement.exr
+[2024-11-28 16:23:04] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3dplant/3dplant_shrub_wf0oefeja/Textures/Atlas/wf0oefeja_4K_Normal.exr
+[2024-11-28 16:23:04] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3dplant/3dplant_shrub_wf0oefeja/Textures/Atlas/wf0oefeja_4K_Opacity.exr
+[2024-11-28 16:23:04] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3dplant/3dplant_shrub_wf0oefeja/Textures/Atlas/wf0oefeja_4K_Roughness.exr
+[2024-11-28 16:23:04] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3dplant/3dplant_shrub_wf0oefeja/Textures/Atlas/wf0oefeja_4K_Specular.exr
+[2024-11-28 16:23:04] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3dplant/3dplant_shrub_wf0oefeja/Textures/Atlas/wf0oefeja_4K_Translucency.exr
+[2024-11-28 16:23:10] [DEBUG - LBridge_logger] - Asset: Raspberry:wf0oefeja was successfully imported
+[2024-11-28 16:23:36] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3dplant/3dplant_shrub_wf0oefeja/Textures/Atlas/wf0oefeja_4K_Albedo.exr
+[2024-11-28 16:23:36] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3dplant/3dplant_shrub_wf0oefeja/Textures/Atlas/wf0oefeja_4K_Displacement.exr
+[2024-11-28 16:23:36] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3dplant/3dplant_shrub_wf0oefeja/Textures/Atlas/wf0oefeja_4K_Normal.exr
+[2024-11-28 16:23:36] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3dplant/3dplant_shrub_wf0oefeja/Textures/Atlas/wf0oefeja_4K_Opacity.exr
+[2024-11-28 16:23:36] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3dplant/3dplant_shrub_wf0oefeja/Textures/Atlas/wf0oefeja_4K_Roughness.exr
+[2024-11-28 16:23:36] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3dplant/3dplant_shrub_wf0oefeja/Textures/Atlas/wf0oefeja_4K_Specular.exr
+[2024-11-28 16:23:36] [ERROR - LBridge_logger] - Converting old file: G:/MegascansLibrary_v02/Downloaded/3dplant/3dplant_shrub_wf0oefeja/Textures/Atlas/wf0oefeja_4K_Translucency.exr
+[2024-11-28 16:23:42] [DEBUG - LBridge_logger] - Asset: Raspberry:wf0oefeja was successfully imported
+[2024-11-28 16:23:44] [DEBUG - LBridge_logger] - Houdini Listener stopped`
+
+
+
+
+
+
