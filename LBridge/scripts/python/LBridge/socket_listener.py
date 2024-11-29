@@ -14,9 +14,6 @@ stop_flag = threading.Event()
 def process_asset_data(data):
     try:
         data_dict = json.loads(data)
-        myfile = r"G:\OneDrive\Dokumente\__hou__\devalopment\Quixel_CustomLiveLink\LBridge\LBridge\scripts\python\LBridge\Quixel_LiveLink_Sample_3dasset_Data.json"
-        with open(myfile, "w") as file:
-            json.dump(data_dict, file, indent=4)
     except json.JSONDecodeError as e:
         set_log("Error parsing JSON to dictionary", exc_info=sys.exc_info())
         data_dict = None
