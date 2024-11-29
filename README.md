@@ -1,5 +1,7 @@
 # Disclaimer
-LBridge is still in beta, things may change in the future
+LBridge is still in beta, things may change in the future.
+
+Currently only Houdini Indie or NC are supported.
 
 Documentation: https://docs.google.com/document/d/1Sb-wLT90WwU-ZzOnbctnEz3rQ6fUw2dDNmt3yN-Lhlc/edit?usp=sharing
 
