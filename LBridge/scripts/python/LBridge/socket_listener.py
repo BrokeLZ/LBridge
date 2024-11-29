@@ -14,7 +14,6 @@ stop_flag = threading.Event()
 def process_asset_data(data):
     try:
         data_dict = json.loads(data)
-        
     except json.JSONDecodeError as e:
         set_log("Error parsing JSON to dictionary", exc_info=sys.exc_info())
         data_dict = None
