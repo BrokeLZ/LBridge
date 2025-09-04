@@ -1,11 +1,16 @@
 import hou
 import sys
-from PySide2.QtWidgets import QMainWindow, QVBoxLayout, QHBoxLayout, QWidget, QSpacerItem, QGroupBox, QTreeWidget, QTreeWidgetItem
-from PySide2.QtWidgets import QCheckBox, QComboBox, QLabel, QLineEdit, QPushButton, QFileDialog, QDialog, QListWidget
-from PySide2.QtCore import Qt, QTimer
-from PySide2.QtGui import QFont
-from .socket_listener import stop_listener
 from functools import partial
+
+from PySide6.QtWidgets import (
+    QMainWindow, QVBoxLayout, QHBoxLayout, QWidget, QSpacerItem, QGroupBox,
+    QTreeWidget, QTreeWidgetItem, QCheckBox, QComboBox, QLabel, QLineEdit,
+    QPushButton, QFileDialog, QDialog, QListWidget
+)
+from PySide6.QtCore import Qt, QTimer
+from PySide6.QtGui import QFont
+
+from .socket_listener import stop_listener
 from .global_vars import set_asset_settings, get_asset_settings_default, get_tex_list
 from .logging_setup import set_log
 
@@ -19,7 +24,8 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.setWindowTitle("LBridge LiveLink Configuration")
-        self.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)
+        # Qt6: use WindowType for flags
+        self.setWindowFlags(self.windowFlags() | Qt.WindowType.WindowStaysOnTopHint)
 
         lay_main = QVBoxLayout()
 
@@ -59,7 +65,7 @@ class Widget_ShaderSetup(QWidget):
         group_shader.setLayout(lay_main_shader)
 
         self.use_shader = QCheckBox("Add Shader")
-        self.use_shader.setCheckState(Qt.Checked)
+        self.use_shader.setCheckState(Qt.CheckState.Checked)
         self.use_shader.clicked.connect(partial(self.update_use_shader))
         self.use_shader.stateChanged.connect(self.toggle_add_shader)
         lay_main_shader.addWidget(self.use_shader)
@@ -69,7 +75,6 @@ class Widget_ShaderSetup(QWidget):
         self.use_custom.clicked.connect(partial(self.update_use_custom))
         self.use_custom.stateChanged.connect(self.toggle_use_custom)
         lay_main_shader.addWidget(self.use_custom)
-
 
         # Which Texture to use
         lay_main_tex_sel = QVBoxLayout()
@@ -81,7 +86,7 @@ class Widget_ShaderSetup(QWidget):
         tex_list = get_tex_list()
         for tex in tex_list:
             checkbox = QCheckBox(tex)
-            checkbox.setCheckState(Qt.Checked)
+            checkbox.setCheckState(Qt.CheckState.Checked)
             checkbox.clicked.connect(partial(self.update_use_tex, checkbox))
             self.lay_use_tex_check.addWidget(checkbox)
             setattr(self, f"use_{tex}", checkbox)
@@ -120,25 +125,22 @@ class Widget_ShaderSetup(QWidget):
         lay_main.addWidget(group_main)
         self.setLayout(lay_main)
 
-        self.setLayout(lay_main)
-
     def toggle_add_shader(self, state):
-        check = state == Qt.Checked and self.use_custom.checkState() != Qt.Checked
+        check = (state == Qt.CheckState.Checked) and (self.use_custom.checkState() != Qt.CheckState.Checked)
         layout = self.lay_use_tex_check
         for i in range(layout.count()):
             widget = layout.itemAt(i).widget()
             if widget:
                 widget.setEnabled(check)
 
-        self.use_custom.setEnabled(state == Qt.Checked)
+        self.use_custom.setEnabled(state == Qt.CheckState.Checked)
 
     def toggle_use_custom(self, state):
         layout = self.lay_use_tex_check
         for i in range(layout.count()):
             widget = layout.itemAt(i).widget()
             if widget:
-                widget.setEnabled(state != Qt.Checked)
-
+                widget.setEnabled(state != Qt.CheckState.Checked)
 
     def update_use_shader(self):
         set_asset_settings("use_shader", self.use_shader.isChecked())
@@ -152,8 +154,9 @@ class Widget_ShaderSetup(QWidget):
         set_asset_settings(f"use_{tex.lower()}", checked)
 
     def toggle_use_convert(self, state):
-        self.format.setEnabled(state == Qt.Checked)
-        self.space.setEnabled(state == Qt.Checked)
+        enabled = state == Qt.CheckState.Checked
+        self.format.setEnabled(enabled)
+        self.space.setEnabled(enabled)
 
     def update_use_convert(self):
         set_asset_settings("use_rat", self.use_convert.isChecked())
@@ -193,16 +196,13 @@ class Widget_GeoSetup(QWidget):
 
         lay_main_group.addWidget(group_lod)
 
-        # self.spacer1 = QSpacerItem(15, 15)
-        # lay_main_group.addItem(self.spacer1)
-
         # Use Proxy
         group_prox = QGroupBox("Proxy:")
         lay_main_prox = QVBoxLayout()
         group_prox.setLayout(lay_main_prox)
 
         self.use_prox = QCheckBox("Add Proxy")
-        self.use_prox.setCheckState(Qt.Checked)
+        self.use_prox.setCheckState(Qt.CheckState.Checked)
         self.use_prox.clicked.connect(partial(self.update_use_prox))
         self.use_prox.stateChanged.connect(self.toggle_prox_type)
         lay_main_prox.addWidget(self.use_prox)
@@ -225,7 +225,7 @@ class Widget_GeoSetup(QWidget):
         self.setLayout(lay_main)
 
     def toggle_prox_type(self, state):
-        self.prox_type.setEnabled(state == Qt.Checked)
+        self.prox_type.setEnabled(state == Qt.CheckState.Checked)
 
     def update_lod(self, index):
         set_asset_settings("lod", index)
@@ -276,33 +276,39 @@ class Widget_OperatorPath(QWidget):
         node = hou.node(text)
         if not node:
             self.path_warning.setVisible(True)
-            self.path_warning.setText("Warning: Node at Path does not exist or can not hold child Nodes.\n"
-                                      "Assets will be exported to Path: /obj/quixel_assets")
+            self.path_warning.setText(
+                "Warning: Node at Path does not exist or can not hold child Nodes.\n"
+                "Assets will be exported to Path: /obj/quixel_assets"
+            )
 
         elif not node.isNetwork():
             self.path_warning.setVisible(True)
-            self.path_warning.setText("Warning: Node at Path is not a Network and can not hol child Nodes-\n"
-                                      "Assets will be exported to Path: /obj/quixel_assets")
+            self.path_warning.setText(
+                "Warning: Node at Path is not a Network and can not hold child Nodes.\n"
+                "Assets will be exported to Path: /obj/quixel_assets"
+            )
 
         elif not node.isEditable():
             self.path_warning.setVisible(True)
-            self.path_warning.setText("Warning: Node at Path is Locked.\n"
-                                      "Assets will be exported to Path: /obj/quixel_assets")
+            self.path_warning.setText(
+                "Warning: Node at Path is Locked.\n"
+                "Assets will be exported to Path: /obj/quixel_assets"
+            )
 
-        elif not node.childTypeCategory().name() == "Lop":
+        elif node.childTypeCategory().name() != "Lop":
             self.path_warning.setVisible(True)
-            self.path_warning.setText("Warning: Node at Path is not of type Lop.\n"
-                                      "Assets will be exported to Path: /obj/quixel_assets")
+            self.path_warning.setText(
+                "Warning: Node at Path is not of type Lop.\n"
+                "Assets will be exported to Path: /obj/quixel_assets"
+            )
 
         else:
             self.path_warning.setVisible(False)
 
-
-
-
     def open_operator_path_dialog(self):
         dialog = OperatorPathDialog(self)
-        if dialog.exec_() == QDialog.Accepted:
+        # Qt6: exec_() -> exec(), and check DialogCode
+        if dialog.exec() == QDialog.DialogCode.Accepted:
             self.root_edit.setText(dialog.selected_path)
 
 
@@ -372,7 +378,10 @@ class OperatorPathDialog(QDialog):
                 if current_path not in root_items:
                     # Create a new tree item for this part
                     item = QTreeWidgetItem([part])
-                    parent_item.addTopLevelItem(item) if parent_item == self.path_tree else parent_item.addChild(item)
+                    if parent_item == self.path_tree:
+                        self.path_tree.addTopLevelItem(item)
+                    else:
+                        parent_item.addChild(item)
                     root_items[current_path] = item
 
                 # Move to the next level (this part becomes the new parent)
@@ -393,7 +402,6 @@ class OperatorPathDialog(QDialog):
                 item = item.parent()
             self.selected_path = "/" + "/".join(path_parts)
         super().accept()
-
 
 
 def init_window():
